@@ -2,8 +2,9 @@
 #Import modules
 import csv
 
-# Import csv
+# Import csv and open textfile
 data_file = "Resources/budget_data.csv"
+export_file = open("analysis/financial_analysis.txt","w")
 
 # Opening file
 with open (data_file) as csvfile:
@@ -34,3 +35,15 @@ with open (data_file) as csvfile:
     print('Average Change: $%0.2f\n' % (average_pl_change))
     print('Greatest Increase in Profits: %d\n' % (max(pl_change_list)))
     print('Greatest Decrease in Profits: %d\n' % (min(pl_change_list)))
+
+
+export_file.write('Financial Analysis\n---------------------------------------------------------\n')
+export_file.write('Total Months: %d\n' % (total_months))
+export_file.write('Total: $%d\n' % (net_total))
+export_file.write('Average Change: $%0.2f\n' % (average_pl_change))
+export_file.write('Greatest Increase in Profits: %d\n' % (max(pl_change_list)))
+export_file.write('Greatest Decrease in Profits: %d\n' % (min(pl_change_list)))
+
+
+# Good practice to close files
+export_file.close()
